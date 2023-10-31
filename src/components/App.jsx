@@ -1,11 +1,11 @@
-import React from "react"
+import React from 'react'
+import LandingPage from '../pages/LandingPage'
 
-function App() {
-
+const App = () => {
   return (
-    <>
-<h1 className="bg-blue-500">This is a test</h1>
-    </>
+    <div>
+      <LandingPage />
+    </div>
   )
 }
 
