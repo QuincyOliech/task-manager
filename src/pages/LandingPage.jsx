@@ -1,5 +1,5 @@
 import React from 'react';
-import TaskImage from '../assets/images/taskimage2.svg';
+import TaskImage from '../assets/images/taskimage3.svg';
 
 const LandingPage = () => {
   return (
