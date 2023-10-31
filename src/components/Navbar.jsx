@@ -15,7 +15,7 @@ function Navbar() {
 
           <div className="md:hidden w-full flex items-center justify-between">
 
-            <span className="text-custom-blue text-4xl font-bold">TaskFlow</span>
+            <a href='/' className="text-custom-blue text-4xl font-bold ">TaskFlow</a>
 
             <button
               onClick={toggleMenu}
@@ -25,15 +25,15 @@ function Navbar() {
             </button>
           </div>
 
-          <span className="hidden md:flex text-custom-blue text-4xl font-bold">TaskFlow</span>
+          <a href='/' className="hidden md:flex text-custom-blue text-4xl font-bold">TaskFlow</a>
 
           {isMenuOpen && (
             <div className="md:hidden py-4 flex flex-col">
               <div className="text-center">
-                <a href="#" className="block text-custom-blue p-2 border-2 border-custom-blue hover:text-white hover:bg-custom-blue bg-white rounded-md hover-bg-custom-blue transition duration-300">
+                <a href="/register" className="block text-custom-blue p-2 border-2 border-custom-blue hover:text-white hover:bg-custom-blue bg-white rounded-md hover-bg-custom-blue transition duration-300">
                   Register
                 </a>
-                <a href="#" className="block text-custom-blue p-2 border-2 border-custom-blue hover:text-white hover:bg-custom-blue bg-white rounded-md hover-bg-custom-blue transition duration-300">
+                <a href="/login" className="block text-custom-blue p-2 border-2 border-custom-blue hover:text-white hover:bg-custom-blue bg-white rounded-md hover-bg-custom-blue transition duration-300">
                   Login
                 </a>
               </div>
@@ -41,10 +41,10 @@ function Navbar() {
           )}
 
           <div className="hidden md:flex space-x-4">
-            <a href="#" className="text-custom-blue p-2 border-2 border-custom-blue hover:text-white hover:bg-custom-blue bg-white rounded-md hover-bg-custom-blue transition duration-300">
+            <a href="/register" className="text-custom-blue p-2 border-2 border-custom-blue hover:text-white hover:bg-custom-blue bg-white rounded-md hover-bg-custom-blue transition duration-300">
               Register
             </a>
-            <a href="#" className="text-custom-blue p-2 border-2 border-custom-blue hover:text-white hover:bg-custom-blue bg-white rounded-md hover-bg-custom-blue transition duration-300">
+            <a href="/login" className="text-custom-blue p-2 border-2 border-custom-blue hover:text-white hover:bg-custom-blue bg-white rounded-md hover-bg-custom-blue transition duration-300">
               Login
             </a>
           </div>
