@@ -9,7 +9,7 @@ const Register = () => {
 
   return (
     <div
-      className="fixed z-50 inset-0 bg-opacity-75"
+      className=" bg-opacity-75"
       style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover', backdropFilter: 'blur(8px)' }}
     >
       <div className=" min-h-screen flex flex-col items-center justify-center mx-auto px-4 py-10 ">

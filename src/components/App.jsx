@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import LandingPage from "../pages/LandingPage";
 import Register from "./Register";
 import Login from "./Login";
@@ -15,9 +15,19 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
       </Routes>
-      <Footer />
+      <ConditionalFooter />
     </div>
   );
 };
+
+function ConditionalFooter() {
+  const location = useLocation();
+
+  if (location.pathname === '/login' || location.pathname === '/register') {
+    return null;
+  }
+
+  return <Footer />;
+}
 
 export default App;
