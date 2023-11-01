@@ -37,27 +37,7 @@ function Navbar() {
           >
             TaskFlow
           </a>
-
-          {isMenuOpen && (
-            <div className="md:hidden py-4 flex flex-col">
-              <div className="text-center">
-                <a
-                  href="/register"
-                  className="block text-custom-blue p-2 border-2 border-custom-blue hover:text-white hover-bg-custom-blue bg-white rounded-md hover-bg-custom-blue transition duration-300"
-                >
-                  Register
-                </a>
-                <a
-                  href="/login"
-                  className="block text-custom-blue p-2 border-2 border-custom-blue hover:text-white hover-bg-custom-blue bg-white rounded-md hover-bg-custom-blue transition duration-300"
-                >
-                  Login
-                </a>
-              </div>
-            </div>
-          )}
-
-          <div className="hidden md:flex space-x-4">
+          <div className="hidden justify-end md:flex space-x-4">
             <a
               href="/register"
               className="flex items-center text-custom-blue p-2 border-2 border-custom-blue hover:text-white hover-bg-custom-blue bg-white rounded-md hover-bg-custom-blue transition duration-300"
@@ -83,6 +63,27 @@ function Navbar() {
             </select>
             <SiGoogletranslate className="text-4xl" />
           </div>
+
+          {isMenuOpen && (
+            <div className="md:hidden py-4 flex flex-col">
+              <div className="text-center">
+                <a
+                  href="/register"
+                  className="block text-custom-blue p-2 border-2 border-custom-blue hover:text-white hover-bg-custom-blue bg-white rounded-md hover-bg-custom-blue transition duration-300"
+                >
+                  Register
+                </a>
+                <a
+                  href="/login"
+                  className="block text-custom-blue p-2 border-2 border-custom-blue hover:text-white hover-bg-custom-blue bg-white rounded-md hover-bg-custom-blue transition duration-300"
+                >
+                  Login
+                </a>
+              </div>
+            </div>
+          )}
+
+
         </div>
       </div>
     </nav>
