@@ -180,7 +180,7 @@ const TaskList = () => {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-                <h2 className="text-lg font-semibold mb-4">Complete</h2>
+                <h2 className="text-lg font-semibold mb-4">Completed</h2>
                 {complete.map((item, index) => (
                   <Draggable key={item?.id} draggableId={item?.id || index.toString()} index={index}>
                     {(provided) => (

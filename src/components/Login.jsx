@@ -73,7 +73,7 @@ const Login = () => {
                     icon: 'success',
                     title: 'Signed in successfully'
                   });
-                  navigate("/");
+                  navigate("/tasklist");
                   setSubmitting(false);
                 })
                 .catch(error => {
