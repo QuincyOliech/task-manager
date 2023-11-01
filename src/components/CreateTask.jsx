@@ -30,8 +30,10 @@ const TodoList = () => {
 
   const handleDeleteTask = (id) => {
     const taskToDelete = incomplete.find((item) => item.id === id);
-    setDeleted((prev) => [...prev, taskToDelete]);
-    setIncomplete((prev) => prev.filter((item) => item.id !== id));
+    if (taskToDelete) {
+      setDeleted((prev) => [...prev, taskToDelete]);
+      setIncomplete((prev) => prev.filter((item) => item.id !== id));
+    }
   };
 
   const handleDeleteCompletedTask = (id) => {
@@ -49,8 +51,10 @@ const TodoList = () => {
 
   const handleRestoreTask = (id) => {
     const taskToRestore = deleted.find((item) => item.id === id);
-    setIncomplete((prev) => [...prev, taskToRestore]);
-    setDeleted((prev) => prev.filter((item) => item.id !== id));
+    if (taskToRestore) {
+      setIncomplete((prev) => [...prev, { ...taskToRestore }]);
+      setDeleted((prev) => prev.filter((item) => item.id !== id));
+    }
   };
 
   useEffect(() => {
@@ -97,43 +101,49 @@ const TodoList = () => {
     if (destination.droppableId === "complete") {
       setComplete((prev) => [...prev, item]);
       if (source.droppableId === "incomplete") {
-        setIncomplete((prev) => prev.filter((_, index) => index !== source.index));
+        setIncomplete((prev) =>
+          prev.filter((_, index) => index !== source.index)
+        );
       } else if (source.droppableId === "deleted") {
         setDeleted((prev) => prev.filter((_, index) => index !== source.index));
       }
     } else if (destination.droppableId === "deleted") {
       setDeleted((prev) => [...prev, item]);
       if (source.droppableId === "incomplete") {
-        setIncomplete((prev) => prev.filter((_, index) => index !== source.index));
+        setIncomplete((prev) =>
+          prev.filter((_, index) => index !== source.index)
+        );
       } else if (source.droppableId === "complete") {
-        setComplete((prev) => prev.filter((_, index) => index !== source.index));
+        setComplete((prev) =>
+          prev.filter((_, index) => index !== source.index)
+        );
       }
     }
   };
 
   return (
-    <div>
-      <div className="flex space-x-4 items-center mt-8">
+    <div className="container mx-auto p-4">
+      <div className="flex flex-col items-center mt-4 sm:flex-row sm:justify-center sm:items-start">
         <input
           type="text"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
-          className="border border-gray-300 rounded-md p-2"
+          className="border border-gray-300 rounded-md p-2 mb-4 sm:mb-0 sm:mr-4"
           placeholder="Add a new task"
         />
         <button
           onClick={handleAddTask}
-          className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+          className="bg-blue-500 hover:bg-blue-600 m-4 text-white py-2 px-4 rounded"
         >
           Add Task
         </button>
       </div>
       <DragDropContext onDragEnd={handleOnDragEnd}>
-        <div className="flex justify-center space-x-4 mt-8">
+        <div className="flex flex-wrap justify-center mt-8">
           <Droppable droppableId="incomplete">
             {(provided) => (
               <div
-                className="w-1/3 bg-gray-100 p-4"
+                className="w-full sm:w-1/3 bg-gray-100 p-4 m-2"
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
@@ -178,7 +188,7 @@ const TodoList = () => {
           <Droppable droppableId="complete">
             {(provided) => (
               <div
-                className="w-1/3 bg-gray-100 p-4"
+                className="w-full sm:w-1/3 bg-gray-100 p-4 m-2"
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
@@ -195,9 +205,7 @@ const TodoList = () => {
                         <span>{item.content}</span>
                         <div>
                           <button
-                            onClick={() =>
-                              handleDeleteCompletedTask(item.id)
-                            }
+                            onClick={() => handleDeleteCompletedTask(item.id)}
                             className="text-red-500 hover:text-red-600 mx-2"
                           >
                             Delete
@@ -213,7 +221,6 @@ const TodoList = () => {
                           >
                             Edit
                           </button>
-
                         </div>
                       </div>
                     )}
@@ -223,28 +230,45 @@ const TodoList = () => {
               </div>
             )}
           </Droppable>
+
           <Droppable droppableId="deleted">
             {(provided) => (
               <div
-                className="w-1/3 bg-gray-100 p-4"
+                className="w-full sm:w-1/3 bg-gray-100 p-4 m-2"
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
                 <h2 className="text-lg font-semibold mb-4">Deleted</h2>
-                {deleted.map((item, index) => (
-                  <div
-                    key={item.id}
-                    className="bg-white p-2 mb-2 flex justify-between items-center"
-                  >
-                    <span>{item.content}</span>
-                    <button
-                      onClick={() => handleRestoreTask(item.id)}
-                      className="text-green-500 hover:text-green-600 mx-2"
+                {deleted
+                  .filter((item) => item !== null)
+                  .map((item, index) => (
+                    <Draggable
+                      key={item.id}
+                      draggableId={item.id}
+                      index={index}
                     >
-                      Restore
-                    </button>
-                  </div>
-                ))}
+                      {(provided) => (
+                        <div
+                          className="bg-white p-2 mb-2 flex justify-between items-center"
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                        >
+                          {item ? (
+                            <>
+                              <span>{item.content}</span>
+                              <button
+                                onClick={() => handleRestoreTask(item.id)}
+                                className="text-green-500 hover:text-green-600 mx-2"
+                              >
+                                Restore
+                              </button>
+                            </>
+                          ) : null}
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
                 {provided.placeholder}
               </div>
             )}
@@ -256,3 +280,70 @@ const TodoList = () => {
 };
 
 export default TodoList;
+
+
+// import React, { useState } from "react";
+
+// const CreateTask = ({ addTask }) => {
+//   const [newTask, setNewTask] = useState("");
+
+//   const handleAddTask = () => {
+//     if (newTask.trim() !== "") {
+//       addTask(newTask);
+//       setNewTask("");
+//     }
+//   };
+
+//   return (
+//     <div className="flex flex-col items-center mt-8 sm:flex-row sm:justify-center">
+//       <input
+//         type="text"
+//         value={newTask}
+//         onChange={(e) => setNewTask(e.target.value)}
+//         className="border border-gray-300 rounded-md p-2 w-full sm:w-64"
+//         placeholder="Add a new task"
+//       />
+//       <button
+//         onClick={handleAddTask}
+//         className="bg-custom-blue ml-4 hover:bg-blue-500 text-white py-2 px-4 rounded mt-2 sm:mt-0"
+//       >
+//         Add Task
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default CreateTask;
+
+// import React, { useState } from "react";
+
+// const CreateTask = ({ addTask }) => {
+//   const [newTask, setNewTask] = useState("");
+
+//   const handleAddTask = () => {
+//     if (newTask.trim() !== "") {
+//       addTask(newTask);
+//       setNewTask("");
+//     }
+//   };
+
+//   return (
+//     <div className="flex flex-col items-center mt-8 sm:flex-row sm:justify-center">
+//       <input
+//         type="text"
+//         value={newTask}
+//         onChange={(e) => setNewTask(e.target.value)}
+//         className="border border-gray-300 rounded-md p-2 w-full sm:w-64"
+//         placeholder="Add a new task"
+//       />
+//       <button
+//         onClick={handleAddTask}
+//         className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded mt-2 sm:mt-0"
+//       >
+//         Add Task
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default CreateTask;

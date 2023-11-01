@@ -21,8 +21,7 @@ const TaskCard = ({ taskId, content, onDragStart, onDelete, onEdit }) => {
     setEditedContent(e.target.value);
   };
 
-  const handleEditSubmit = (e) => {
-    e.preventDefault();
+  const handleEditSubmit = () => {
     onEdit(taskId, editedContent);
     setIsEditing(false);
   };
@@ -30,12 +29,12 @@ const TaskCard = ({ taskId, content, onDragStart, onDelete, onEdit }) => {
   return (
     <div className="bg-gray-300 p-2 mb-2 rounded shadow flex items-center" draggable onDragStart={handleDragStart}>
       {isEditing ? (
-        <form onSubmit={handleEditSubmit} className="flex-grow">
+        <div className="flex-grow">
           <input type="text" value={editedContent} onChange={handleEditChange} autoFocus />
-          <button className="bg-black hover:bg-green-600 text-white px-2 mt-2 ml-6 text-m rounded" type="submit">
+          <button className="bg-black hover:bg-green-600 text-white px-2 mt-2 ml-6 text-m rounded" onClick={handleEditSubmit}>
             Save
           </button>
-        </form>
+        </div>
       ) : (
         <>
           <div className="flex-grow">{content}</div>
