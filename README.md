@@ -38,4 +38,4 @@ A Task Management website built with Vite, React, and Tailwind CSS. This web app
     You can access it at: http://localhost:5173/
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the MIT License. 
