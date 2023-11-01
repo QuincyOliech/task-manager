@@ -30,7 +30,7 @@ function Navbar() {
               TaskFlow
             </Link>
           </div>
-    
+
           <div className="hidden md:block">
             <div className="flex items-center justify-center">
               {/* {!Boolean(user) ? ( */}
@@ -59,7 +59,7 @@ function Navbar() {
             </div>
           </div>
           <div className="hidden md:block">
-            <div className=" mt-4 md:mt-0 flex items-center text-custom-blue space-x-2">
+            <div className=" mt-4 md:mt-0 flex items-center text-custom-blue space-x-2" id="google_translate_element">
               <select
                 value={language}
                 onChange={handleLanguageChange}
@@ -106,7 +106,7 @@ function Navbar() {
                 <MdLogout className="mr-2" /> Logout
               </button>
               <div className="mt-4 md:mt-0 flex items-center text-custom-blue space-x-2">
-                <div className="relative">
+                <div className="relative" id="google_translate_element">
                   <select
                     value={language}
                     onChange={handleLanguageChange}

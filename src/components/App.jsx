@@ -5,8 +5,8 @@ import Register from "./Register";
 import Login from "./Login";
 import NavBar from "./Navbar";
 import Footer from "./Footer";
-import CreateTask from "./CreateTask"
 import "../App.css"
+import TaskList from "./TaskList";
 
 const App = () => {
   return (
@@ -16,7 +16,7 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/createtask" element={<CreateTask />} />
+        <Route path="/tasklist" element={<TaskList />} />
       </Routes>
       <ConditionalFooter />
     </div>

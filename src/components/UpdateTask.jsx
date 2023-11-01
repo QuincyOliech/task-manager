@@ -1,40 +1,41 @@
 import React, { useState } from 'react';
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai';
-
+​
 const TaskCard = ({ taskId, content, onDragStart, onDelete, onEdit }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(content);
-
+​
   const handleDragStart = (e) => {
     onDragStart(e, taskId);
   };
-
+​
   const handleDeleteClick = () => {
     onDelete(taskId);
   };
-
+​
   const handleEditClick = () => {
     setIsEditing(true);
   };
-
+​
   const handleEditChange = (e) => {
     setEditedContent(e.target.value);
   };
-
-  const handleEditSubmit = () => {
+​
+  const handleEditSubmit = (e) => {
+    e.preventDefault();
     onEdit(taskId, editedContent);
     setIsEditing(false);
   };
-
+​
   return (
     <div className="bg-gray-300 p-2 mb-2 rounded shadow flex items-center" draggable onDragStart={handleDragStart}>
       {isEditing ? (
-        <div className="flex-grow">
+        <form onSubmit={handleEditSubmit} className="flex-grow">
           <input type="text" value={editedContent} onChange={handleEditChange} autoFocus />
-          <button className="bg-black hover:bg-green-600 text-white px-2 mt-2 ml-6 text-m rounded" onClick={handleEditSubmit}>
+          <button className="bg-black hover:bg-green-600 text-white px-2 mt-2 ml-6 text-m rounded" type="submit">
             Save
           </button>
-        </div>
+        </form>
       ) : (
         <>
           <div className="flex-grow">{content}</div>
@@ -51,5 +52,5 @@ const TaskCard = ({ taskId, content, onDragStart, onDelete, onEdit }) => {
     </div>
   );
 };
-
+​
 export default TaskCard;

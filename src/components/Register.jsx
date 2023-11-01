@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import backgroundImage from '../assets/images/background4.avif';
 
 const Register = () => {
@@ -55,11 +56,42 @@ const Register = () => {
                 })
                 .then(data => {
                   console.log('Success:', data);
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  });
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Registered successfully!'
+                  });
+                  navigate("/login");
                   setSubmitting(false);
-                  navigate('/login');
                 })
                 .catch(error => {
                   console.error('Error:', error);
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  });
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'Oops incorrect details',
+
+                  });
                   setSubmitting(false);
                 });
             }}
@@ -93,7 +125,6 @@ const Register = () => {
                 >
                   Register
                 </button>
-
               </Form>
             )}
           </Formik>

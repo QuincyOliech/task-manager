@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
 import backgroundImage from '../assets/images/background4.avif';
 import { useNavigate } from 'react-router-dom';
 
@@ -57,11 +58,42 @@ const Login = () => {
                 .then(data => {
                   console.log('Success:', data);
                   notify();
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  });
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Signed in successfully'
+                  });
+                  navigate("/");
                   setSubmitting(false);
-                  navigate('/tasks');
                 })
                 .catch(error => {
                   console.error('Error:', error);
+                  const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  });
+                  Toast.fire({
+                    icon: 'error',
+                    title: 'User not found',
+
+                  });
                   setSubmitting(false);
                 });
             }}
