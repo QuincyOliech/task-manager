@@ -27,19 +27,24 @@ A Task Management website built with Vite, React, and Tailwind CSS. This web app
 
 2. Change to the project directory:
 
-    ```cd task-management-website
+    ```
+    cd task-management-website
 
 3. Install dependencies:
 
-    ```npm install
+    ```
+    npm install
 
 ## Usage
 1. Start the development server:
 
-    ```npm run dev
+    ```
+    npm run dev
 
-    You can access it at:http://localhost:5173/
-    
+    You can access it at:
+
+    http://localhost:5173/
+
 2. Using Sample Data
 
 When working with this application, you can utilize the sample data provided below for testing purposes.
