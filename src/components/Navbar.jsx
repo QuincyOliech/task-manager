@@ -68,15 +68,8 @@ function Navbar() {
               className="mt-4 md:mt-0 flex items-center text-custom-blue space-x-2"
               id="google_translate_element"
             >
-              <select
-                value={language}
-                onChange={handleLanguageChange}
-                className="text-custom-blue border-2 p-2 border-custom-blue bg-white rounded-md m-2 transition duration-300"
-              >
-                <option value="English">English</option>
-                <option value="French">French</option>
-              </select>
-              <SiGoogletranslate className="text-3xl" />
+
+              <SiGoogletranslate className="text-xl" />
             </div>
           </div>
           <div className="md:hidden">
@@ -116,15 +109,8 @@ function Navbar() {
               )}
               <div className="mt-4 md:mt-0 flex items-center text-custom-blue space-x-2">
                 <div className="relative" id="google_translate_element">
-                  <select
-                    value={language}
-                    onChange={handleLanguageChange}
-                    className="text-black hover:text-custom-blue border-2 p-2 border-custom-blue bg-white rounded-md m-2 transition duration-300 pl-8"
-                  >
-                    <option value="English">English</option>
-                    <option value="French">French</option>
-                  </select>
-                  <SiGoogletranslate className="text-4xl absolute left-2 top-2 p-2" />
+
+                  <SiGoogletranslate className="text-xl absolute left-2 top-2 p-2" />
                 </div>
               </div>
             </div>
