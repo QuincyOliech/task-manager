@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { useAuth } from "./AuthContext";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
+  const { setIsLoggedIn } = useAuth();
 
   const notify = () => {
     toast.success('Login successful!', {
@@ -74,6 +76,7 @@ const Login = () => {
                     title: 'Signed in successfully'
                   });
                   navigate("/tasklist");
+                  setIsLoggedIn(true);
                   setSubmitting(false);
                 })
                 .catch(error => {
@@ -92,7 +95,6 @@ const Login = () => {
                   Toast.fire({
                     icon: 'error',
                     title: 'User not found',
-
                   });
                   setSubmitting(false);
                 });

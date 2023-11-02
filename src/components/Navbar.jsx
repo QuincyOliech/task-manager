@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { FaUserPlus, FaSignInAlt, FaBars } from "react-icons/fa";
 import { SiGoogletranslate } from "react-icons/si";
 import { MdLogout } from "react-icons/md";
@@ -9,6 +9,8 @@ function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState("English");
   const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const navigate = useNavigate();
+
 
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
@@ -19,6 +21,7 @@ function Navbar() {
   };
 
   const logout = () => {
+    navigate("/");
     setIsLoggedIn(false);
   };
 
