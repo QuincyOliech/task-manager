@@ -63,13 +63,12 @@ function Navbar() {
             </div>
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden md:block mt-10">
             <div
-              className="mt-4 md:mt-0 flex items-center text-custom-blue space-x-2"
+              className=" flex items-center text-custom-blue space-x-2"
               id="google_translate_element"
             >
-
-              <SiGoogletranslate className="text-xl" />
+              <SiGoogletranslate className=" -mt-10 text-xl" />
             </div>
           </div>
           <div className="md:hidden">
@@ -81,39 +80,32 @@ function Navbar() {
             </button>
           </div>
         </div>
+
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {isLoggedIn ? (
-                <button
-                  onClick={logout}
+          <div className=" md:hidden px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {isLoggedIn ? (
+              <button
+                onClick={logout}
+                className="text-black hover:text-custom-blue flex items-center px-3 py-2 rounded-md text-base font-medium"
+              >
+                <MdLogout className="mr-2" /> Logout
+              </button>
+            ) : (
+              <>
+                <Link
+                  to="/register"
+                  className="text-black flex items-center hover:text-custom-blue px-3 py-2 rounded-md text-base font-medium"
+                >
+                  <FaUserPlus className="mr-2" /> Register
+                </Link>
+                <Link
+                  to="/login"
                   className="text-black hover:text-custom-blue flex items-center px-3 py-2 rounded-md text-base font-medium"
                 >
-                  <MdLogout className="mr-2" /> Logout
-                </button>
-              ) : (
-                <>
-                  <Link
-                    to="/register"
-                    className="text-black flex items-center hover:text-custom-blue px-3 py-2 rounded-md text-base font-medium"
-                  >
-                    <FaUserPlus className="mr-2" /> Register
-                  </Link>
-                  <Link
-                    to="/login"
-                    className="text-black hover:text-custom-blue flex items-center px-3 py-2 rounded-md text-base font-medium"
-                  >
-                    <FaSignInAlt className="mr-2" /> Login
-                  </Link>
-                </>
-              )}
-              <div className="mt-4 md:mt-0 flex items-center text-custom-blue space-x-2">
-                <div className="relative" id="google_translate_element">
-
-                  <SiGoogletranslate className="text-xl absolute left-2 top-2 p-2" />
-                </div>
-              </div>
-            </div>
+                  <FaSignInAlt className="mr-2" /> Login
+                </Link>
+              </>
+            )}
           </div>
         )}
       </div>
