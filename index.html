@@ -17,12 +17,14 @@
           }, 'google_translate_element');
 
           setTimeout(function(){
-            document.getElementsByClassName('goog-te-combo')[0].className += ' text-custom-blue border-2 p-2 border-custom-blue  bg-white rounded-md  m-2 transition duration-300';
+            if( document.getElementsByClassName('goog-te-combo').length>0){
+              document.getElementsByClassName('goog-te-combo')[0].className += ' text-custom-blue border-2 p-2 border-custom-blue  bg-white rounded-md  m-2 transition duration-300';
+            }
           },2000)
       }
   </script>
-  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
     <script type="module" src="/src/main.jsx"></script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
 
   </body>
 </html>
