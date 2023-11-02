@@ -39,7 +39,7 @@ const Login = () => {
               return errors;
             }}
             onSubmit={(values, { setSubmitting }) => {
-              fetch('https://reqres.in/api/login', {
+              fetch('https://65437f5c01b5e279de20773a.mockapi.io/api/users', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',

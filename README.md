@@ -45,39 +45,8 @@ A Task Management website built with Vite, React, and Tailwind CSS. This web app
 
     http://localhost:5173/
 
-2. Using Sample Data
+2. Register using first name, last name email and password then login with email and password.
 
-When working with this application, you can utilize the sample data provided below for testing purposes.
-
-### Sample Data
-
-The following sample user data can be used for testing:
-
-```json
-[
-    {
-        "id": 7,
-        "email": "michael.lawson@reqres.in",
-        "first_name": "Michael",
-        "last_name": "Lawson",
-        "avatar": "https://reqres.in/img/faces/7-image.jpg"
-    },
-    {
-        "id": 8,
-        "email": "lindsay.ferguson@reqres.in",
-        "first_name": "Lindsay",
-        "last_name": "Ferguson",
-        "avatar": "https://reqres.in/img/faces/8-image.jpg"
-    },
-    {
-        "id": 9,
-        "email": "tobias.funke@reqres.in",
-        "first_name": "Tobias",
-        "last_name": "Funke",
-        "avatar": "https://reqres.in/img/faces/9-image.jpg"
-    }
-]
-```
 
 ## License
 This project is licensed under the MIT License.
