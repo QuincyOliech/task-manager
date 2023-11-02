@@ -1,36 +1,64 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
+import { useAuth } from "./AuthContext";
 import LandingPage from "../pages/LandingPage";
 import Register from "./Register";
 import Login from "./Login";
-import NavBar from "./Navbar";
+import Navbar from "./Navbar";
 import Footer from "./Footer";
-import "../App.css"
 import TaskList from "./TaskList";
 
-const App = () => {
+function App() {
+  const { isLoggedIn } = useAuth();
+
   return (
     <div>
-      <NavBar />
+      <Navbar />
+
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/tasklist" element={<TaskList />} />
+        {isLoggedIn ? (
+          <Route path="/tasklist" element={<TaskList />} />
+        ) : (
+          <Route path="/login" element={<Login />} />
+        )}
+        {!isLoggedIn && <Route path="/register" element={<Register />} />}
       </Routes>
+
       <ConditionalFooter />
     </div>
   );
-};
+}
 
 function ConditionalFooter() {
   const location = useLocation();
+  const { isLoggedIn } = useAuth();
 
-  if (location.pathname === '/login' || location.pathname === '/register') {
+  if (location.pathname === "/login" || location.pathname === "/register") {
     return null;
   }
 
   return <Footer />;
+}
+
+function TaskRoute() {
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
+
+  const logout = () => {
+    setIsLoggedIn(false);
+  };
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  }
+
+  return <TaskList onLogout={logout} />;
 }
 
 export default App;

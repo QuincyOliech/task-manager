@@ -1,1 +1,7 @@
+.skiptranslate.goog-te-gadget{
+    visibility: collapse;
+}
 
+.skiptranslate.goog-te-gadget > div{
+    visibility: visible;
+}
