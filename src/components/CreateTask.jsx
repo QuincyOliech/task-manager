@@ -6,7 +6,7 @@ const CreateTask = ({addTask}) => {
   const handleAddTask = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://65437f5c01b5e279de20773a.mockapi.io/api/tasks", {
+      const response = await fetch("https://65437f5c01b5e279de20773a.mockapi.io/api/users/1/tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,7 +27,7 @@ const CreateTask = ({addTask}) => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-8 sm:flex-row sm:justify-center">
+    <div className="flex flex-col items-center mt-8 m-6 sm:flex-row sm:justify-center">
       <input
         type="text"
         value={task}
@@ -35,7 +35,7 @@ const CreateTask = ({addTask}) => {
         className="border border-gray-300 rounded-md p-2 w-full sm:w-64"
         placeholder="Add a new task"
       />
-      <button onClick={handleAddTask} className="bg-custom-blue hover:bg-blue-500 ml-4 m-4 text-white py-2 px-4 rounded mt-2 sm:mt-0">
+      <button onClick={handleAddTask} className="bg-custom-blue hover:bg-blue-500 ml-4  text-white py-2 px-4 rounded mt-2 sm:mt-0">
         Add Task
       </button>
     </div>

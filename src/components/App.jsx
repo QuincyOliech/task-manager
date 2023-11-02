@@ -13,6 +13,7 @@ import Login from "./Login";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import TaskList from "./TaskList";
+import "../App.css"
 
 function App() {
   const { isLoggedIn } = useAuth();
